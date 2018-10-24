@@ -60,8 +60,8 @@ class Topics extends React.Component {
     return (
       <div>
         <ul>
-          {this.state.users.map(user => (
-            <li>{user.name}</li>
+          {this.state.users.map((user, i) => (
+            <li key={i}>{user.name}</li>
           ))}
         </ul>
       </div>
