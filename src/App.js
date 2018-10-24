@@ -38,10 +38,35 @@ const About = () => (
   </div>
 );
 
-const Topics = () => (
-  <div>
-    <h2>Topics</h2>
-  </div>
-);
+class Topics extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      users: []
+    };
+
+    this.componentWillMount = this.componentWillMount.bind(this);
+  }
+
+  componentWillMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(response => {
+        this.setState({ users: response });
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        <ul>
+          {this.state.users.map(user => (
+            <li>{user.name}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 export default App;
